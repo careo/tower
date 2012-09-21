@@ -18,11 +18,16 @@ File.mkdirpSync = (dir) ->
         console.error(e)
 
 Tower.GeneratorActions =
-  get: (url, to) ->
+  get: (url, to, retries=0) ->
     path  = @destinationPath(to)
 
+    self = this
     error = ->
-      console.log "Error downloading #{url}"
+      if retries > 3
+        console.log "Error downloading #{url}"
+      else
+        retries++
+        self.get(url, to, retries++)
 
     request = Tower.module('superagent').get(url).buffer(true)
     # Cache buster so if the author uploads newer version to same path
