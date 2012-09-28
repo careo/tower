@@ -1,4 +1,4 @@
-PATH_SEP = $(shell node -e "console.log(require('path').sep)")
+PATH_SEP = $(shell coffee -e "console.log(require('path').sep)")
 SRC = $(shell find test/cases -name client -prune -o -name '*Test.coffee' -print)
 STORES = memory mongodb
 CMD = node_modules/mocha/bin/mocha
@@ -6,16 +6,16 @@ DIR = $(shell pwd)
 GRUNT = grunt
 FOREVER = forever
 # darwin (mac), linux, win32 (windows)
-OS = $(shell node -e "console.log(require('os').platform())")
+OS = $(shell coffee -e "console.log(require('os').platform())")
 DEPENDENCIES = bin$(PATH_SEP)dependencies
 PORT = 3210
 TEST_URL = http://localhost:$(PORT)/?test=support,application,store,model
 CLIENT_PID = null
 TEST_SERVER_PATH = test/example/server
 
-PATH_SEP = $(shell node -e "console.log(require('path').sep)")
+PATH_SEP = $(shell coffee -e "console.log(require('path').sep)")
 # darwin (mac), linux, win32 (windows)
-OS = $(shell node -e "console.log(require('os').platform())")
+OS = $(shell coffee -e "console.log(require('os').platform())")
 DEPENDENCIES = bin$(PATH_SEP)dependencies
 
 ifeq (win32,$(OS))
